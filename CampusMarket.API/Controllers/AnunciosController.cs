@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CampusMarket.API.Services;
 using CampusMarket.API.DTOs;
+using CampusMarket.API.Exceptions;
 
 namespace CampusMarket.API.Controllers
 {
@@ -30,7 +31,7 @@ namespace CampusMarket.API.Controllers
                 var anuncio = _service.BuscarPorId(id);
                 return Ok(anuncio);
             }
-            catch (Exception ex)
+            catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
@@ -49,7 +50,7 @@ namespace CampusMarket.API.Controllers
                     anuncio
                     );
             }
-            catch (Exception ex)
+            catch (BusinessException ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -63,9 +64,13 @@ namespace CampusMarket.API.Controllers
                 var anuncio = _service.Atualizar(id, dto);
                 return Ok(anuncio);
             }
-            catch (Exception ex)
+            catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
+            }
+            catch (BusinessException ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
@@ -77,7 +82,7 @@ namespace CampusMarket.API.Controllers
                 _service.Deletar(id);
                 return NoContent();
             }
-            catch (Exception ex)
+            catch (NotFoundException ex)
             {
                 return NotFound(ex.Message);
             }
