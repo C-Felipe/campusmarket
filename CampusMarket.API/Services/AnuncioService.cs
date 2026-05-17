@@ -77,7 +77,7 @@ namespace CampusMarket.API.Services
             var anuncio = anuncios.FirstOrDefault(a => a.Id == id);
 
             if (anuncio == null)
-                throw new Exception("Anúncio não encontrado.");
+                throw new NotFoundException("Anúncio não encontrado.");
 
             anuncios.Remove(anuncio);
         }
@@ -90,7 +90,7 @@ namespace CampusMarket.API.Services
             var anuncio = anuncios.FirstOrDefault(a => a.Id == id);
 
             if (anuncio == null)
-                throw new Exception("Anúncio não encontrado.");
+                throw new NotFoundException("Anúncio não encontrado.");
 
             anuncio.Titulo = dto.Titulo;
             anuncio.Descricao = dto.Descricao;
@@ -110,7 +110,7 @@ namespace CampusMarket.API.Services
             };
         }
 
-        public void ValidarDto(CriarAnuncioDto dto)
+        private void ValidarDto(CriarAnuncioDto dto)
         {
             if (string.IsNullOrWhiteSpace(dto.Titulo))
                 throw new BusinessException("O Título é obrigatório!");

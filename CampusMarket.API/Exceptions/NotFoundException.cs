@@ -2,7 +2,7 @@
 {
     public class NotFoundException : Exception
     {
-        public NotFoundException(string mesage) : base(mesage)
+        public NotFoundException(string message) : base(message)
         {
 
         }

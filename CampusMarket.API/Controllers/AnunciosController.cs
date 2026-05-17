@@ -26,66 +26,29 @@ namespace CampusMarket.API.Controllers
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
-            try
-            {
-                var anuncio = _service.BuscarPorId(id);
-                return Ok(anuncio);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var anuncio = _service.BuscarPorId(id);
+            return Ok(anuncio);
         }
 
         [HttpPost]
         public IActionResult Criar([FromBody] CriarAnuncioDto dto)
         {
-            try
-            {
-                var anuncio = _service.Criar(dto);
-
-                return CreatedAtAction(
-                    nameof(BuscarPorId),
-                    new { id = anuncio.Id },
-                    anuncio
-                    );
-            }
-            catch (BusinessException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var anuncio = _service.Criar(dto);
+            return CreatedAtAction(nameof(BuscarPorId), new { id = anuncio.Id }, anuncio);
         }
 
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] CriarAnuncioDto dto)
         {
-            try
-            {
-                var anuncio = _service.Atualizar(id, dto);
-                return Ok(anuncio);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (BusinessException ex)
-            {
-                return BadRequest(ex.Message);
-            }
+           var anuncio = _service.Atualizar(id, dto);
+            return Ok(anuncio);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
-            try
-            {
-                _service.Deletar(id);
-                return NoContent();
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            _service.Deletar(id);
+            return NoContent();
         }
     }
 }
