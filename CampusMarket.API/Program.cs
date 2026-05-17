@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using CampusMarket.API.Data;
 using CampusMarket.API.Services;
+using CampusMarket.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
