@@ -1,16 +1,22 @@
 ﻿using CampusMarket.API.DTOs;
 using CampusMarket.API.Models;
 using CampusMarket.API.Exceptions;
+using CampusMarket.API.Data;
 
 namespace CampusMarket.API.Services
 {
     public class AnuncioService : IAnuncioService
     {
-        private static List<Anuncio> anuncios = new List<Anuncio>();
+        private readonly AppDbContext _context;
+
+        public AnuncioService(AppDbContext context)
+        {
+            _context = context;
+        }
 
         public List<AnuncioResponseDto> Listar()
         {
-            return anuncios.Select(a => new AnuncioResponseDto
+            return _context.Anuncios.Select(a => new AnuncioResponseDto
             {
                 Id = a.Id,
                 Titulo = a.Titulo,
@@ -25,7 +31,7 @@ namespace CampusMarket.API.Services
         //Busca anúncio por ID
         public AnuncioResponseDto BuscarPorId(int id)
         {
-            var anuncio = anuncios.FirstOrDefault (a => a.Id == id);
+            var anuncio = _context.Anuncios.FirstOrDefault (a => a.Id == id);
 
             if (anuncio == null)
                 throw new NotFoundException("Anúncio não encontrado.");
@@ -49,7 +55,7 @@ namespace CampusMarket.API.Services
 
             var anuncio = new Anuncio
             {
-                Id = anuncios.Any() ? anuncios.Max(a => a.Id) + 1 : 1,
+
                 Titulo = dto.Titulo,
                 Descricao = dto.Descricao,
                 Preco = dto.Preco,
@@ -58,7 +64,8 @@ namespace CampusMarket.API.Services
                 DataCriacao = DateTime.UtcNow
             };
 
-            anuncios.Add(anuncio);
+            _context.Anuncios.Add(anuncio);
+            _context.SaveChanges();
 
             return new AnuncioResponseDto
             {
@@ -74,12 +81,13 @@ namespace CampusMarket.API.Services
 
         public void Deletar(int id)
         {
-            var anuncio = anuncios.FirstOrDefault(a => a.Id == id);
+            var anuncio = _context.Anuncios.FirstOrDefault(a => a.Id == id);
 
             if (anuncio == null)
                 throw new NotFoundException("Anúncio não encontrado.");
 
-            anuncios.Remove(anuncio);
+            _context.Anuncios.Remove(anuncio);
+            _context.SaveChanges();
         }
 
         //Atualiza os dados do anúncio, menos a data de criação 
@@ -87,7 +95,7 @@ namespace CampusMarket.API.Services
         {
             ValidarDto(dto);
 
-            var anuncio = anuncios.FirstOrDefault(a => a.Id == id);
+            var anuncio = _context.Anuncios.FirstOrDefault(a => a.Id == id);
 
             if (anuncio == null)
                 throw new NotFoundException("Anúncio não encontrado.");
@@ -97,6 +105,8 @@ namespace CampusMarket.API.Services
             anuncio.Preco = dto.Preco;
             anuncio.Telefone = dto.Telefone;
             anuncio.Categoria = dto.Categoria;
+
+            _context.SaveChanges();
 
             return new AnuncioResponseDto
             {
