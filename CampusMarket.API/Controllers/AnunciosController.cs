@@ -2,9 +2,11 @@
 using CampusMarket.API.Services;
 using CampusMarket.API.DTOs;
 using CampusMarket.API.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CampusMarket.API.Controllers
 {
+    [Authorize] //só entra aqui quem tiver token, senão toma 401
     [ApiController]
     [Route("api/[controller]")]
     public class AnunciosController : ControllerBase
@@ -33,7 +35,8 @@ namespace CampusMarket.API.Controllers
         [HttpPost]
         public IActionResult Criar([FromBody] CriarAnuncioDto dto)
         {
-            var anuncio = _service.Criar(dto);
+            var usuarioId = int.Parse(User.FindFirst("id")!.Value);
+            var anuncio = _service.Criar(dto, usuarioId);
             return CreatedAtAction(nameof(BuscarPorId), new { id = anuncio.Id }, anuncio);
         }
 

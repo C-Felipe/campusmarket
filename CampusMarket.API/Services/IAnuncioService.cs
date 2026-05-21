@@ -8,7 +8,7 @@ namespace CampusMarket.API.Services
 
             AnuncioResponseDto BuscarPorId(int id);
 
-            AnuncioResponseDto Criar(CriarAnuncioDto dto);
+            AnuncioResponseDto Criar(CriarAnuncioDto dto, int usuarioId);
 
             void Deletar(int id);
 

@@ -49,7 +49,7 @@ namespace CampusMarket.API.Services
         }
 
         //Cria um anúncio novo
-        public AnuncioResponseDto Criar(CriarAnuncioDto dto)
+        public AnuncioResponseDto Criar(CriarAnuncioDto dto, int usuarioId)
         {
             ValidarDto(dto);
 
@@ -61,7 +61,8 @@ namespace CampusMarket.API.Services
                 Preco = dto.Preco,
                 Telefone = dto.Telefone,
                 Categoria = dto.Categoria,
-                DataCriacao = DateTime.UtcNow
+                DataCriacao = DateTime.UtcNow,
+                UsuarioId = usuarioId
             };
 
             _context.Anuncios.Add(anuncio);

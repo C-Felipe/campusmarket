@@ -15,5 +15,8 @@
         public string Categoria {  get; set; } = string.Empty;
 
         public DateTime DataCriacao { get; set; } = DateTime.UtcNow;
+
+        public int UsuarioId { get; set; }
+        public Usuario? Usuario { get; set; }
     }
 }
