@@ -39,7 +39,7 @@ namespace CampusMarket.API.Services
             {
                 Nome = dto.Nome,
                 Email = dto.Email,
-                Senha = dto.Senha
+                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
             };
 
             _context.Usuarios.Add(usuario);
@@ -52,7 +52,7 @@ namespace CampusMarket.API.Services
         {
             var usuario = _context.Usuarios.FirstOrDefault(u => u.Email == dto.Email);
 
-            if (usuario == null || usuario.Senha != dto.Senha)
+            if (usuario == null || !BCrypt.Net.BCrypt.Verify(dto.Senha, usuario.Senha))
                 throw new BusinessException("Email ou senha inválidos!");
 
             return GerarToken(usuario);
