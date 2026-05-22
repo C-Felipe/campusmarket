@@ -80,19 +80,23 @@ namespace CampusMarket.API.Services
             };
         }
 
-        public void Deletar(int id)
+        public void Deletar(int id, int usuarioId)
         {
             var anuncio = _context.Anuncios.FirstOrDefault(a => a.Id == id);
 
             if (anuncio == null)
                 throw new NotFoundException("Anúncio não encontrado.");
 
+            //para verificar se o usuario é dono do anuncio
+            if (anuncio.UsuarioId != usuarioId)
+                throw new BusinessException("Você não tem permissão para deletar esse anúncio.");
+
             _context.Anuncios.Remove(anuncio);
             _context.SaveChanges();
         }
 
         //Atualiza os dados do anúncio, menos a data de criação 
-        public AnuncioResponseDto Atualizar(int id, CriarAnuncioDto dto)
+        public AnuncioResponseDto Atualizar(int id, CriarAnuncioDto dto, int usuarioId)
         {
             ValidarDto(dto);
 
@@ -100,6 +104,9 @@ namespace CampusMarket.API.Services
 
             if (anuncio == null)
                 throw new NotFoundException("Anúncio não encontrado.");
+
+            if (anuncio.UsuarioId != usuarioId)
+                throw new BusinessException("Você não tem permissão para editar esse anúncio.");
 
             anuncio.Titulo = dto.Titulo;
             anuncio.Descricao = dto.Descricao;

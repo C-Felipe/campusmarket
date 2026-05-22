@@ -10,8 +10,8 @@ namespace CampusMarket.API.Services
 
             AnuncioResponseDto Criar(CriarAnuncioDto dto, int usuarioId);
 
-            void Deletar(int id);
+            void Deletar(int id, int usuarioId);
 
-        AnuncioResponseDto Atualizar(int id, CriarAnuncioDto dto);
+        AnuncioResponseDto Atualizar(int id, CriarAnuncioDto dto, int usuarioId);
         }
     }

@@ -43,14 +43,16 @@ namespace CampusMarket.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] CriarAnuncioDto dto)
         {
-           var anuncio = _service.Atualizar(id, dto);
+           var usuarioId = int.Parse(User.FindFirst("id")!.Value);
+           var anuncio = _service.Atualizar(id, dto, usuarioId);
             return Ok(anuncio);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
-            _service.Deletar(id);
+            var usuarioId = int.Parse(User.FindFirst("id")!.Value);
+            _service.Deletar(id, usuarioId);
             return NoContent();
         }
     }
