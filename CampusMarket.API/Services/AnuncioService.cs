@@ -2,6 +2,7 @@
 using CampusMarket.API.Models;
 using CampusMarket.API.Exceptions;
 using CampusMarket.API.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CampusMarket.API.Services
 {
@@ -24,13 +25,18 @@ namespace CampusMarket.API.Services
                 Preco = a.Preco,
                 Categoria = a.Categoria,
                 DataCriacao = a.DataCriacao,
+                UsuarioId = a.UsuarioId,
+                NomeVendedor = a.Usuario!.Nome,
+                TelefoneVendedor = a.Usuario!.Telefone
             }).ToList();
         }
 
         //Busca anúncio por ID
         public AnuncioResponseDto BuscarPorId(int id)
         {
-            var anuncio = _context.Anuncios.FirstOrDefault (a => a.Id == id);
+            var anuncio = _context.Anuncios
+                .Include(a => a.Usuario)
+                .FirstOrDefault (a => a.Id == id);
 
             if (anuncio == null)
                 throw new NotFoundException("Anúncio não encontrado.");
@@ -43,6 +49,9 @@ namespace CampusMarket.API.Services
                 Preco = anuncio.Preco,
                 Categoria = anuncio.Categoria,
                 DataCriacao = anuncio.DataCriacao,
+                UsuarioId = anuncio.UsuarioId,
+                NomeVendedor = anuncio.Usuario!.Nome,
+                TelefoneVendedor = anuncio.Usuario!.Telefone
             };
         }
 

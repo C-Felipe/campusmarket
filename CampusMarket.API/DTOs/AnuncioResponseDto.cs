@@ -15,5 +15,9 @@ namespace CampusMarket.API.DTOs
         public string Categoria {  get; set; } = string.Empty;
 
         public DateTime DataCriacao {  get; set; }
+        
+        public int UsuarioId { get; set; }
+        public string NomeVendedor { get; set; } = string.Empty;
+        public string TelefoneVendedor { get; set; } = string.Empty;
     }
 }
