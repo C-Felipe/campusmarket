@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CampusMarket.API.Services;
 using CampusMarket.API.DTOs;
-using CampusMarket.API.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CampusMarket.API.Controllers
 {
-    [Authorize] //só entra aqui quem tiver token, senão toma 401
     [ApiController]
     [Route("api/[controller]")]
     public class AnunciosController : ControllerBase
@@ -18,6 +16,7 @@ namespace CampusMarket.API.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -25,6 +24,7 @@ namespace CampusMarket.API.Controllers
             return Ok(anuncios);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -32,6 +32,7 @@ namespace CampusMarket.API.Controllers
             return Ok(anuncio);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Criar([FromBody] CriarAnuncioDto dto)
         {
@@ -40,6 +41,7 @@ namespace CampusMarket.API.Controllers
             return CreatedAtAction(nameof(BuscarPorId), new { id = anuncio.Id }, anuncio);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] CriarAnuncioDto dto)
         {
@@ -48,6 +50,7 @@ namespace CampusMarket.API.Controllers
             return Ok(anuncio);
         }
 
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {

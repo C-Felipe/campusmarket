@@ -5,7 +5,6 @@ using System.Text;
 using CampusMarket.API.Data;
 using CampusMarket.API.Services;
 using CampusMarket.API.Middlewares;
-using CampusMarket.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

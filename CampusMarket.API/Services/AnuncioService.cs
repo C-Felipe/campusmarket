@@ -137,7 +137,7 @@ namespace CampusMarket.API.Services
                 throw new BusinessException("O preço deve ser maior que zero!");
 
             if (string.IsNullOrWhiteSpace(dto.Telefone))
-                throw new BusinessException("O pelefone é obrigatório!");
+                throw new BusinessException("O telefone é obrigatório!");
 
             if (!dto.Telefone.All(char.IsDigit))
                 throw new BusinessException("O telefone deve conter apenas números!");
