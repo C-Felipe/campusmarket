@@ -22,7 +22,6 @@ namespace CampusMarket.API.Services
                 Titulo = a.Titulo,
                 Descricao = a.Descricao,
                 Preco = a.Preco,
-                Telefone = a.Telefone,
                 Categoria = a.Categoria,
                 DataCriacao = a.DataCriacao,
             }).ToList();
@@ -42,7 +41,6 @@ namespace CampusMarket.API.Services
                 Titulo = anuncio.Titulo,
                 Descricao = anuncio.Descricao,
                 Preco = anuncio.Preco,
-                Telefone = anuncio.Telefone,
                 Categoria = anuncio.Categoria,
                 DataCriacao = anuncio.DataCriacao,
             };
@@ -59,7 +57,6 @@ namespace CampusMarket.API.Services
                 Titulo = dto.Titulo,
                 Descricao = dto.Descricao,
                 Preco = dto.Preco,
-                Telefone = dto.Telefone,
                 Categoria = dto.Categoria,
                 DataCriacao = DateTime.UtcNow,
                 UsuarioId = usuarioId
@@ -74,7 +71,6 @@ namespace CampusMarket.API.Services
                 Titulo = anuncio.Titulo,
                 Descricao = anuncio.Descricao,
                 Preco = anuncio.Preco,
-                Telefone = anuncio.Telefone,
                 Categoria = anuncio.Categoria,
                 DataCriacao = anuncio.DataCriacao
             };
@@ -111,7 +107,6 @@ namespace CampusMarket.API.Services
             anuncio.Titulo = dto.Titulo;
             anuncio.Descricao = dto.Descricao;
             anuncio.Preco = dto.Preco;
-            anuncio.Telefone = dto.Telefone;
             anuncio.Categoria = dto.Categoria;
 
             _context.SaveChanges();
@@ -122,7 +117,6 @@ namespace CampusMarket.API.Services
                 Titulo = anuncio.Titulo,
                 Descricao = anuncio.Descricao,
                 Preco = anuncio.Preco,
-                Telefone = anuncio.Telefone,
                 Categoria = anuncio.Categoria,
                 DataCriacao = anuncio.DataCriacao
             };
@@ -135,15 +129,6 @@ namespace CampusMarket.API.Services
 
             if (dto.Preco <= 0)
                 throw new BusinessException("O preço deve ser maior que zero!");
-
-            if (string.IsNullOrWhiteSpace(dto.Telefone))
-                throw new BusinessException("O telefone é obrigatório!");
-
-            if (!dto.Telefone.All(char.IsDigit))
-                throw new BusinessException("O telefone deve conter apenas números!");
-
-            if (dto.Telefone.Length != 11)
-                throw new BusinessException("O telefone deve conter 11 dígitos!");
         }
     } 
 }

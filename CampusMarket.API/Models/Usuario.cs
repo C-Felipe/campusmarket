@@ -9,6 +9,7 @@ namespace CampusMarket.API.Models
         public string Email { get; set; } = string.Empty;
 
         public string Senha { get; set; } = string.Empty;
+        public string Telefone {  get; set; } = string.Empty;
         public List<Anuncio> Anuncios { get; set; } = new List<Anuncio>();
     }
 }

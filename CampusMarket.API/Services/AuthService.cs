@@ -31,6 +31,15 @@ namespace CampusMarket.API.Services
             if (string.IsNullOrWhiteSpace(dto.Senha))
                 throw new BusinessException("A senha é obrigatória!");
 
+            if (string.IsNullOrWhiteSpace(dto.Telefone))
+                throw new BusinessException("O telefone é obrigatório!");
+
+            if (!dto.Telefone.All(char.IsDigit))
+                throw new BusinessException("O telefone deve conter apenas números!");
+
+            if (dto.Telefone.Length != 11)
+                throw new BusinessException("O telefone deve conter 11 dígitos!");
+
             var emailExiste = _context.Usuarios.Any(u => u.Email == dto.Email);
             if (emailExiste)
                 throw new BusinessException("Esse email já está cadastrado!");
@@ -39,7 +48,8 @@ namespace CampusMarket.API.Services
             {
                 Nome = dto.Nome,
                 Email = dto.Email,
-                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha)
+                Senha = BCrypt.Net.BCrypt.HashPassword(dto.Senha),
+                Telefone = dto.Telefone
             };
 
             _context.Usuarios.Add(usuario);
