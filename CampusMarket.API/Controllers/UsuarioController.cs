@@ -1,0 +1,35 @@
+﻿using CampusMarket.API.Services;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace CampusMarket.API.Controllers
+{
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UsuarioController : ControllerBase
+    {
+        private readonly IUsuarioService _service;
+
+        public UsuarioController(IUsuarioService service)
+        {
+            _service = service;
+        }
+
+        [HttpGet("me")]
+        public IActionResult Me()
+        {
+            var usuarioId = int.Parse(User.FindFirst("id")!.Value);
+            var usuario = _service.BuscarPorId(usuarioId);
+            return Ok(usuario);
+        }
+
+        [HttpGet("meus-anuncios")]
+        public IActionResult MeusAnuncios()
+        {
+            var usuarioId = int.Parse(User.FindFirst("id")!.Value);
+            var anuncios = _service.BuscarMeusAnuncios(usuarioId);
+            return Ok(anuncios);
+        }
+    }
+}

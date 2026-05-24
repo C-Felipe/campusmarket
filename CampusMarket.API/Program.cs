@@ -46,6 +46,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IAnuncioService, AnuncioService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 // Configuração do jwt
 var jwtKey = builder.Configuration["Jwt:Key"];
