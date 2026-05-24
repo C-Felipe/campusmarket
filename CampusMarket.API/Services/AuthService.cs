@@ -31,6 +31,9 @@ namespace CampusMarket.API.Services
             if (string.IsNullOrWhiteSpace(dto.Senha))
                 throw new BusinessException("A senha é obrigatória!");
 
+            if (dto.Senha.Length < 6)
+                throw new BusinessException("A senha deve ter no mínimo 6 caracteres!");
+
             if (string.IsNullOrWhiteSpace(dto.Telefone))
                 throw new BusinessException("O telefone é obrigatório!");
 
