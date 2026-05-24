@@ -8,6 +8,17 @@ using CampusMarket.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//isso aqui é pa permitir o front se comunicar com a API
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirFronted", policy =>
+    {
+        policy.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
@@ -77,6 +88,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseCors("PermitirFronted");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
