@@ -18,9 +18,9 @@ namespace CampusMarket.API.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public IActionResult Listar()
+        public IActionResult Listar([FromQuery] string? categoria = null, [FromQuery] string? titulo = null)
         {
-            var anuncios = _service.Listar();
+            var anuncios = _service.Listar(categoria, titulo);
             return Ok(anuncios);
         }
 

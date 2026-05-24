@@ -4,7 +4,7 @@ namespace CampusMarket.API.Services
 {
     public interface IAnuncioService
     {
-        List<AnuncioResponseDto> Listar();
+        List<AnuncioResponseDto> Listar(string? categoria = null, string? titulo = null);
 
         AnuncioResponseDto BuscarPorId(int id);
 

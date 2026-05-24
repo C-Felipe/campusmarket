@@ -15,9 +15,18 @@ namespace CampusMarket.API.Services
             _context = context;
         }
 
-        public List<AnuncioResponseDto> Listar()
+        public List<AnuncioResponseDto> Listar(string? categoria = null, string? titulo = null)
         {
-            return _context.Anuncios.Select(a => new AnuncioResponseDto
+            var query = _context.Anuncios.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(categoria))
+                query = query.Where(a => a.Categoria.ToLower() == categoria.ToLower());
+
+            if (!string.IsNullOrWhiteSpace(titulo))
+                query = query.Where(a => a.Titulo.ToLower().Contains(titulo.ToLower()));
+
+
+            return query.Select(a => new AnuncioResponseDto
             {
                 Id = a.Id,
                 Titulo = a.Titulo,

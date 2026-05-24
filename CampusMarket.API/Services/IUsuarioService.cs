@@ -6,5 +6,8 @@ namespace CampusMarket.API.Services
     {
         UsuarioResponseDto BuscarPorId(int id);
         List<AnuncioResponseDto> BuscarMeusAnuncios(int usuarioId);
+
+        UsuarioResponseDto EditarPerfil(int id, EditarPerfilDto dto);
+        void TrocarSenha(int id, TrocarSenhaDto dto);
     }
 }
