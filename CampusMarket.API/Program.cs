@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 //isso aqui é pa permitir o front se comunicar com a API
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("PermitirFronted", policy =>
+    options.AddPolicy("PermitirFrontend", policy =>
     {
         policy.AllowAnyOrigin()
         .AllowAnyMethod()
@@ -88,7 +88,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseCors("PermitirFronted");
+app.UseCors("PermitirFrontend");
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

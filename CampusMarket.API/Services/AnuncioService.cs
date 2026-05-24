@@ -74,6 +74,8 @@ namespace CampusMarket.API.Services
             _context.Anuncios.Add(anuncio);
             _context.SaveChanges();
 
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == usuarioId)!;
+
             return new AnuncioResponseDto
             {
                 Id = anuncio.Id,
@@ -81,7 +83,10 @@ namespace CampusMarket.API.Services
                 Descricao = anuncio.Descricao,
                 Preco = anuncio.Preco,
                 Categoria = anuncio.Categoria,
-                DataCriacao = anuncio.DataCriacao
+                DataCriacao = anuncio.DataCriacao,
+                UsuarioId = anuncio.UsuarioId,
+                NomeVendedor = usuario.Nome,
+                TelefoneVendedor = usuario.Telefone
             };
         }
 
@@ -120,6 +125,8 @@ namespace CampusMarket.API.Services
 
             _context.SaveChanges();
 
+            var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == usuarioId)!;
+
             return new AnuncioResponseDto
             {
                 Id = anuncio.Id,
@@ -127,7 +134,10 @@ namespace CampusMarket.API.Services
                 Descricao = anuncio.Descricao,
                 Preco = anuncio.Preco,
                 Categoria = anuncio.Categoria,
-                DataCriacao = anuncio.DataCriacao
+                DataCriacao = anuncio.DataCriacao,
+                UsuarioId = anuncio.UsuarioId,
+                NomeVendedor = usuario.Nome,
+                TelefoneVendedor = usuario.Telefone
             };
         }
 
