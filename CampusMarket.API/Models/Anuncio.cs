@@ -6,15 +6,17 @@
 
         public string Titulo { get; set; } = string.Empty;
 
-        public string Descricao {  get; set; } = string.Empty;
+        public string Descricao { get; set; } = string.Empty;
 
-        public decimal Preco {  get; set; }
+        public decimal Preco { get; set; }
 
-        public string Categoria {  get; set; } = string.Empty;
+        public string Categoria { get; set; } = string.Empty;
 
         public DateTime DataCriacao { get; set; } = DateTime.UtcNow;
 
         public int UsuarioId { get; set; }
         public Usuario? Usuario { get; set; }
+
+        public string? ImagemUrl { get; set; }
     }
 }

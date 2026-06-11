@@ -1,13 +1,17 @@
-﻿namespace CampusMarket.API.DTOs
+﻿using Microsoft.AspNetCore.Http;
+
+namespace CampusMarket.API.DTOs
 {
     public class CriarAnuncioDto
     {
         public string Titulo { get; set; } = string.Empty;
 
-        public string Descricao {  get; set; } = string.Empty;
+        public string Descricao { get; set; } = string.Empty;
 
-        public decimal Preco {  get; set; }
+        public decimal Preco { get; set; }
 
         public string Categoria { get; set; } = string.Empty;
+
+        public IFormFile? Imagem { get; set; }
     }
 }

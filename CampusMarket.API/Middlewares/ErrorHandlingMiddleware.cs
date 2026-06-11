@@ -28,15 +28,27 @@ namespace CampusMarket.API.Middlewares
             }
             catch (Exception ex)
             {
+                //só para imprinmir qual era o erro
+                Console.WriteLine("\n=== ERRO FATAL DETECTADO ===");
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine("============================\n");
+
                 await EscreverResposta(context, 500, "Erro interno do servidor.");
             }
         }
 
         private static async Task EscreverResposta(HttpContext context, int statusCode, String mensagem)
         {
+            // coloquei para impedir o erro -1, mas não funcionou
+            if (context.Response.HasStarted)
+            {
+                Console.WriteLine("[AVISO] A requisição já havia começado. Ignorando a mudança de status.");
+                return;
+            }
+
             context.Response.StatusCode = statusCode;
             context.Response.ContentType = "application/json";
-            
+
             var resposta = new { error = mensagem };
             var json = JsonSerializer.Serialize(resposta);
 

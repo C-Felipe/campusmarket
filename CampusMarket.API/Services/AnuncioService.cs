@@ -1,4 +1,6 @@
-﻿using CampusMarket.API.DTOs;
+﻿using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using CampusMarket.API.DTOs;
 using CampusMarket.API.Models;
 using CampusMarket.API.Exceptions;
 using CampusMarket.API.Data;
@@ -9,10 +11,12 @@ namespace CampusMarket.API.Services
     public class AnuncioService : IAnuncioService
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public AnuncioService(AppDbContext context)
+        public AnuncioService(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         public List<AnuncioResponseDto> Listar(string? categoria = null, string? titulo = null)
@@ -25,7 +29,6 @@ namespace CampusMarket.API.Services
             if (!string.IsNullOrWhiteSpace(titulo))
                 query = query.Where(a => a.Titulo.ToLower().Contains(titulo.ToLower()));
 
-
             return query.Select(a => new AnuncioResponseDto
             {
                 Id = a.Id,
@@ -36,7 +39,8 @@ namespace CampusMarket.API.Services
                 DataCriacao = a.DataCriacao,
                 UsuarioId = a.UsuarioId,
                 NomeVendedor = a.Usuario!.Nome,
-                TelefoneVendedor = a.Usuario!.Telefone
+                TelefoneVendedor = a.Usuario!.Telefone,
+                ImagemUrl = a.ImagemUrl
             }).ToList();
         }
 
@@ -45,7 +49,7 @@ namespace CampusMarket.API.Services
         {
             var anuncio = _context.Anuncios
                 .Include(a => a.Usuario)
-                .FirstOrDefault (a => a.Id == id);
+                .FirstOrDefault(a => a.Id == id);
 
             if (anuncio == null)
                 throw new NotFoundException("Anúncio não encontrado.");
@@ -60,7 +64,8 @@ namespace CampusMarket.API.Services
                 DataCriacao = anuncio.DataCriacao,
                 UsuarioId = anuncio.UsuarioId,
                 NomeVendedor = anuncio.Usuario!.Nome,
-                TelefoneVendedor = anuncio.Usuario!.Telefone
+                TelefoneVendedor = anuncio.Usuario!.Telefone,
+                ImagemUrl = anuncio.ImagemUrl
             };
         }
 
@@ -69,15 +74,42 @@ namespace CampusMarket.API.Services
         {
             ValidarDto(dto);
 
+            string? imagemUrl = null;
+
+            if (dto.Imagem != null && dto.Imagem.Length > 0)
+            {
+                //para apontar para pasta imagens
+                var pastaAtual = Directory.GetCurrentDirectory();
+                var pastaImagens = Path.Combine(pastaAtual, "wwwroot", "imagens");
+
+                // Cria a pasta automaticamente
+                if (!Directory.Exists(pastaImagens))
+                    Directory.CreateDirectory(pastaImagens);
+
+                // para garantir que não sobresceva outro arquivo, gera outro nome
+                var extensao = Path.GetExtension(dto.Imagem.FileName);
+                var nomeArquivo = $"{Guid.NewGuid()}{extensao}";
+                var caminhoCompleto = Path.Combine(pastaImagens, nomeArquivo);
+
+                // para salvamento sincrono
+                using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
+                {
+                    dto.Imagem.CopyTo(stream);
+                }
+
+                // para montar o url q o front vai ler
+                imagemUrl = $"/imagens/{nomeArquivo}";
+            }
+
             var anuncio = new Anuncio
             {
-
                 Titulo = dto.Titulo,
                 Descricao = dto.Descricao,
                 Preco = dto.Preco,
                 Categoria = dto.Categoria,
                 DataCriacao = DateTime.UtcNow,
-                UsuarioId = usuarioId
+                UsuarioId = usuarioId,
+                ImagemUrl = imagemUrl
             };
 
             _context.Anuncios.Add(anuncio);
@@ -95,7 +127,8 @@ namespace CampusMarket.API.Services
                 DataCriacao = anuncio.DataCriacao,
                 UsuarioId = anuncio.UsuarioId,
                 NomeVendedor = usuario.Nome,
-                TelefoneVendedor = usuario.Telefone
+                TelefoneVendedor = usuario.Telefone,
+                ImagemUrl = anuncio.ImagemUrl
             };
         }
 
@@ -158,5 +191,5 @@ namespace CampusMarket.API.Services
             if (dto.Preco <= 0)
                 throw new BusinessException("O preço deve ser maior que zero!");
         }
-    } 
+    }
 }

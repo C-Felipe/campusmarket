@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CampusMarket.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260521211647_CriacaoInicial")]
-    partial class CriacaoInicial
+    [Migration("20260611173552_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,18 +37,22 @@ namespace CampusMarket.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Preco")
+                    b.Property<string>("ImagemUrl")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Telefone")
-                        .IsRequired()
+                    b.Property<decimal>("Preco")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Anuncios");
                 });
@@ -71,9 +75,29 @@ namespace CampusMarket.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Telefone")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("CampusMarket.API.Models.Anuncio", b =>
+                {
+                    b.HasOne("CampusMarket.API.Models.Usuario", "Usuario")
+                        .WithMany("Anuncios")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("CampusMarket.API.Models.Usuario", b =>
+                {
+                    b.Navigation("Anuncios");
                 });
 #pragma warning restore 612, 618
         }

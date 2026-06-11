@@ -34,6 +34,9 @@ namespace CampusMarket.API.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImagemUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<decimal>("Preco")
                         .HasColumnType("TEXT");
 

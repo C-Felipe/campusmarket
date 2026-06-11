@@ -34,10 +34,13 @@ namespace CampusMarket.API.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Criar([FromBody] CriarAnuncioDto dto)
+        public IActionResult Criar([FromForm] CriarAnuncioDto dto)
         {
             var usuarioId = int.Parse(User.FindFirst("id")!.Value);
+
+            // Sem await, para execucao ser direta
             var anuncio = _service.Criar(dto, usuarioId);
+
             return CreatedAtAction(nameof(BuscarPorId), new { id = anuncio.Id }, anuncio);
         }
 
@@ -45,8 +48,8 @@ namespace CampusMarket.API.Controllers
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, [FromBody] CriarAnuncioDto dto)
         {
-           var usuarioId = int.Parse(User.FindFirst("id")!.Value);
-           var anuncio = _service.Atualizar(id, dto, usuarioId);
+            var usuarioId = int.Parse(User.FindFirst("id")!.Value);
+            var anuncio = _service.Atualizar(id, dto, usuarioId);
             return Ok(anuncio);
         }
 
