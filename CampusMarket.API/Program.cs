@@ -8,7 +8,7 @@ using CampusMarket.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//isso aqui é pa permitir o front se comunicar com a API
+// isso aqui é para permitir o front se comunicar com a API
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirFrontend", policy =>
@@ -86,6 +86,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 var app = builder.Build();
 
+// Configurações para servir o front-end React
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
 if (app.Environment.IsDevelopment())
@@ -100,4 +102,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+// Redireciona rotas órfãs para o index.html do React (evita 404)
+app.MapFallbackToFile("index.html");
+
 app.Run();
