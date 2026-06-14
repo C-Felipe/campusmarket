@@ -46,7 +46,7 @@ namespace CampusMarket.API.Controllers
 
         [Authorize]
         [HttpPut("{id}")]
-        public IActionResult Atualizar(int id, [FromBody] CriarAnuncioDto dto)
+        public IActionResult Atualizar(int id, [FromForm] CriarAnuncioDto dto)
         {
             var usuarioId = int.Parse(User.FindFirst("id")!.Value);
             var anuncio = _service.Atualizar(id, dto, usuarioId);

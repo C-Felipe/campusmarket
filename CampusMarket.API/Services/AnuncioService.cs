@@ -147,7 +147,7 @@ namespace CampusMarket.API.Services
             _context.SaveChanges();
         }
 
-        //Atualiza os dados do anúncio, menos a data de criação 
+        // Atualiza os dados do anúncio, incluindo a imagem e ignorando a data de criação 
         public AnuncioResponseDto Atualizar(int id, CriarAnuncioDto dto, int usuarioId)
         {
             ValidarDto(dto);
@@ -165,6 +165,31 @@ namespace CampusMarket.API.Services
             anuncio.Preco = dto.Preco;
             anuncio.Categoria = dto.Categoria;
 
+            // Se uma nova imagem foi enviada, atualiza o arquivo e o caminho
+            if (dto.Imagem != null && dto.Imagem.Length > 0)
+            {
+                var pastaAtual = Directory.GetCurrentDirectory();
+                var pastaImagens = Path.Combine(pastaAtual, "wwwroot", "imagens");
+
+                if (!Directory.Exists(pastaImagens))
+                    Directory.CreateDirectory(pastaImagens);
+
+                var extensao = Path.GetExtension(dto.Imagem.FileName);
+                var nomeArquivo = $"{Guid.NewGuid()}{extensao}";
+                var caminhoCompleto = Path.Combine(pastaImagens, nomeArquivo);
+
+                using (var stream = new FileStream(caminhoCompleto, FileMode.Create))
+                {
+                    dto.Imagem.CopyTo(stream);
+                }
+
+                // Se já tinha imagem antiga, pode apagar
+                if (!string.IsNullOrEmpty(anuncio.ImagemUrl))
+                    RemoverArquivoAntigo(anuncio.ImagemUrl);
+
+                anuncio.ImagemUrl = $"/imagens/{nomeArquivo}";
+            }
+
             _context.SaveChanges();
 
             var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == usuarioId)!;
@@ -179,8 +204,25 @@ namespace CampusMarket.API.Services
                 DataCriacao = anuncio.DataCriacao,
                 UsuarioId = anuncio.UsuarioId,
                 NomeVendedor = usuario.Nome,
-                TelefoneVendedor = usuario.Telefone
+                TelefoneVendedor = usuario.Telefone,
+                ImagemUrl = anuncio.ImagemUrl
             };
+        }
+
+        private void RemoverArquivoAntigo(string urlRelativa)
+        {
+            try
+            {
+                var caminhoArquivo = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", urlRelativa.TrimStart('/'));
+                if (File.Exists(caminhoArquivo))
+                {
+                    File.Delete(caminhoArquivo);
+                }
+            }
+            catch
+            {
+                // Ignora falhas ao deletar arquivo antigo para não travar a atualização
+            }
         }
 
         private void ValidarDto(CriarAnuncioDto dto)

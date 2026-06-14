@@ -44,7 +44,8 @@ namespace CampusMarket.API.Services
                     DataCriacao = a.DataCriacao,
                     UsuarioId = usuarioId,
                     NomeVendedor = a.Usuario!.Nome,
-                    TelefoneVendedor = a.Usuario!.Telefone
+                    TelefoneVendedor = a.Usuario!.Telefone,
+                    ImagemUrl = a.ImagemUrl
                 }).ToList();
         }
 
