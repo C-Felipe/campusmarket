@@ -70,13 +70,11 @@ O CampusMarket surge como uma solução para centralizar essas interações em u
 campusmarket-ufersa/
 │
 ├── README.md
-├── src/
-│   ├── frontend/
-│   └── backend/
+├── CampusMarket.API
+│
+├── Front-end
 │
 ├── prototype/
-│
-├── docs/
 │
 └── .gitignore
 ```
