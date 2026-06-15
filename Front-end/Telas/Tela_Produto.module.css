@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Goldman&family=Space+Mono:wght@700&display=swap");
+
+.pageContainer {
+  background-color: var(--bg-popeye);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Baloo 2", sans-serif;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.navbar {
+  background: var(--bg-popeye);
+  width: 100%;
+  max-width: 1340px;
+  padding: 16px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.logo {
+  color: var(--cor-texto-dark);
+  font-family: 'Goldman', sans-serif;
+  font-size: 32px;
+  letter-spacing: 1.92px;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.navIcons {
+  display: flex;
+  gap: 24px;
+  color: var(--cor-texto-dark); 
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.iconButtonInvisible {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.iconButtonInvisible:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+.dividerLinha {
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+
+.contentWrapper {
+  width: 100%;
+  max-width: 1340px;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  flex-grow: 1; 
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 440px;
+  gap: 48px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-grow: 1; 
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageSection {
+  display: grid;
+  grid-template-columns: 2.3fr 1fr; 
+  gap: 24px;
+}
+
+.thumbnailColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.imagePlaceholderMain {
+  background: #f5576c;
+  border: 1.5px solid var(--border-input);
+  border-radius: 20px; 
+  aspect-ratio: 1.2 / 1; 
+  transition: border-color 0.3s ease;
+}
+
+.imagePlaceholderThumb {
+  background: #f5576c;
+  border: 1.5px solid var(--border-input);
+  border-radius: 16px; 
+  aspect-ratio: 1.2 / 1;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.2s, border-color 0.3s ease;
+}
+
+.imagePlaceholderThumb:hover {
+  opacity: 1;
+}
+
+.sidebarCard {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-input);
+  border-radius: 24px;
+  padding: 40px 32px;
+  height: fit-content;
+  box-sizing: border-box;
+  align-self: start; 
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.productName {
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--cor-texto-dark);
+  margin: 0 0 12px 0;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.productPrice {
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--cor-texto-dark);
+  margin-bottom: 24px;
+  transition: color 0.3s ease;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.btnPrimary {
+  background: var(--cor-primaria);
+  color: var(--cor-texto-light);
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+.btnPrimary:hover {
+  opacity: 0.95;
+  transform: scale(1.01); 
+  box-shadow: 0 4px 14px rgba(109, 45, 217, 0.2); 
+}
+
+.btnPrimary:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(109, 45, 217, 0.1);
+}
+
+.descriptionBox {
+  margin-top: 32px;
+  border-top: 1.5px solid var(--border-input);
+  padding-top: 24px;
+}
+
+.descriptionBox h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cor-texto-dark);
+  margin: 0 0 8px 0;
+  transition: color 0.3s ease;
+}
+
+.descriptionBox p {
+  font-size: 15px;
+  color: var(--cor-texto-dark); 
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.containerGeralRodape {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto; 
+  padding-top: 60px; 
+}
+
+.divisorRodape {
+  border: none;
+  border-top: 1.5px solid var(--border-input);
+  width: 100%;
+  margin: 20px 0;
+}
+
+.rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.rodapeEsquerda {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rodapeLogo {
+  color: var(--cor-texto-dark);
+  font-family: 'Goldman', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.rodapeLogo:hover {
+  opacity: 0.85;
+  transform: scale(1.02); 
+}
+
+.redesSociais {
+  display: flex;
+  gap: 16px;
+  color: var(--cor-texto-dark);
+}
+
+.instagramWrapper, .twitterWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.rodapeLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.rodapeLinks a {
+  color: var(--cor-texto-dark);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}

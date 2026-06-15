@@ -1,0 +1,21 @@
+/*Paleta de cores padrão (tema claro)*/
+:root {
+  --bg-popeye: #ecf6fe;         
+  --bg-card: #ffffff;           
+  --cor-primaria: #440a8f;      
+  --cor-texto-dark: #381664;    
+  --cor-texto-light: #fcfaff;   
+  --border-input: #440a8f;      
+  --bg-input-disabled: #e1edf7; 
+}
+
+/*Configuração para o modo escuro*/
+[data-theme="dark"] {
+  --bg-popeye: #0f172a;          
+  --bg-card: #1e293b;            
+  --cor-primaria: #a78bfa;       
+  --cor-texto-dark: #f8fafc;     
+  --cor-texto-light: #0f172a;    
+  --border-input: #6d28d9;       
+  --bg-input-disabled: #1e293b;  
+}
