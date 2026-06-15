@@ -47,6 +47,7 @@ O CampusMarket surge como uma solução para centralizar essas interações em u
 * ASP.NET Core
 * HTML
 * CSS
+* TypeScript
 
 ### Banco de Dados
 
