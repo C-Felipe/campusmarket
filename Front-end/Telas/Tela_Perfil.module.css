@@ -1,0 +1,420 @@
+@import "https://fonts.googleapis.com/css?family=Goldman:400&display=swap";
+@import "https://fonts.googleapis.com/css?family=Baloo+2:700&display=swap";
+@import "https://fonts.googleapis.com/css?family=Familjen+Grotesk:400;600&display=swap";
+@import "https://fonts.googleapis.com/css?family=Space+Mono:700&display=swap";
+
+.container {
+  background: var(--bg-popeye);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.header {
+width: 100%;
+  background: var(--bg-popeye);
+  padding: 0 48px;
+  box-sizing: border-box;
+  border-bottom: 2px solid var(--border-input); 
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.Barra_1_2833 {
+background: var(--bg-popeye);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1344px;
+  padding: 24px 0;
+  display: flex;
+  position: relative;
+  margin: 0 auto;
+  transition: background 0.3s ease;
+}
+
+.CampusBazaar_1_2492 {
+  color: var(--cor-texto-dark);
+  letter-spacing: 1.92px;
+  font-family: Goldman, sans-serif;
+  font-size: 32px;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.Icons_1_2493 {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.User_1_2496 {
+  cursor: pointer;
+  color: var(--cor-texto-dark);
+  transition: color 0.3s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.Divider_1_2521 {
+  display: none !important; 
+}
+
+.bannerContainer {
+  width: 100%;
+  max-width: 1344px;
+  height: 280px;
+  margin: 24px auto 0 auto;
+  border-radius: 24px;
+  background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=1536&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  border: 1.5px solid var(--border-input);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -60px;
+  margin-bottom: 32px;
+  z-index: 2;
+}
+
+.avatarContainer {
+  width: 120px;
+  height: 120px;
+  background: var(--bg-card);
+  border-radius: 50%;
+  border: 4px solid var(--bg-popeye);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.avatarSvg {
+  width: 70px;
+  height: 70px;
+  color: var(--cor-texto-dark);
+  transition: color 0.3s ease;
+}
+
+.username {
+  color: var(--cor-texto-dark);
+  font-family: "Baloo 2", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.verifiedBadge {
+  background: var(--cor-primaria);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-texto-light);
+  transition: background 0.3s ease;
+}
+
+.controlsRow {
+  width: 100%;
+  max-width: 1344px;
+  padding: 0 48px;
+  box-sizing: border-box;
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.justifyEnd {
+  justify-content: flex-end;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.searchBar {
+  box-sizing: border-box;
+  background: var(--bg-card); 
+  border: 1.5px solid var(--border-input);
+  border-radius: 22px;
+  width: 320px;
+  height: 40px;
+  padding: 6px 44px 6px 16px;
+  outline: none;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cor-texto-dark);
+  transition: all 0.3s ease;
+}
+
+.searchBar:focus {
+  border-color: var(--cor-texto-dark);
+  box-shadow: 0 0 0 3px rgba(109, 45, 217, 0.15);
+}
+
+.searchBar::placeholder {
+  color: var(--cor-texto-dark);
+  opacity: 0.6;
+  font-weight: 500;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 16px;
+  pointer-events: none;
+  color: var(--cor-texto-dark); 
+  transition: color 0.3s ease;
+}
+
+.productsGrid {
+  width: 100%;
+  max-width: 1344px;
+  padding: 0 48px 64px 48px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+}
+
+.productCard, .addCardOuter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.productImagePlaceholder {
+  box-sizing: border-box;
+  border: 1.5px solid var(--border-input);
+  border-radius: 28px;
+  aspect-ratio: 1 / 1; 
+  overflow: hidden;
+  background: var(--bg-card);
+  transition: border-color 0.3s ease;
+}
+
+.gradientBg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.productInfo {
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.productName {
+  color: var(--cor-texto-dark);
+  font-family: "Familjen Grotesk", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.productPrice {
+  color: var(--cor-texto-dark); 
+  font-family: "Familjen Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  opacity: 0.9;
+  transition: color 0.3s ease;
+}
+
+.addCardSquare {
+  box-sizing: border-box;
+  background: var(--bg-card);
+  border: 2px dashed var(--cor-primaria);
+  border-radius: 28px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.addCardSquare:hover {
+  transform: translateY(-4px);
+  border-color: var(--cor-texto-dark);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.addBtn {
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--cor-texto-dark);
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.plusIcon {
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.addText {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.productInfoPlaceholder {
+  height: 46px; 
+}
+
+.footer {
+  width: 100%;
+  max-width: 1344px;
+  margin-top: auto;
+  padding: 48px 48px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid var(--border-input);
+  transition: border-color 0.3s ease;
+}
+
+.footerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLogo {
+  color: var(--cor-texto-dark);
+  font-family: Goldman, sans-serif;
+  font-size: 28px;
+  transition: color 0.3s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.socialIcons {
+  display: flex;      
+  flex-direction: row; 
+  gap: 16px;          
+  align-items: center; 
+  color: var(--cor-texto-dark);
+  margin-top: 8px;     
+  transition: color 0.3s ease;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 32px;
+}
+
+.footerLinks a {
+  color: var(--cor-texto-dark);
+  text-decoration: none;
+  font-family: "Space Mono", monospace;
+  font-size: 14px;
+  font-weight: 700;
+  transition: color 0.3s ease, opacity 0.2s ease;
+}
+
+.footerLinks a:hover {
+  opacity: 0.8;
+}
+
+.settingsIconContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-texto-dark);
+  transition: transform 0.3s ease-in-out, color 0.3s ease, opacity 0.2s ease;
+}
+
+.settingsIconContainer:hover {
+  transform: rotate(45deg);
+  opacity: 0.8;
+}
+
+.Logo_1_2491 {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.Logo_1_2491:hover,
+.footerLogo:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.User_1_2496:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+.productCard {
+  transition: transform 0.2s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+}
+
+@media (max-width: 768px) {
+  .Barra_1_2833 {
+    padding: 16px;
+    height: auto;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .productsGrid {
+    grid-template-columns: 1fr; /* Produtos empilhados em 1 coluna */
+    gap: 20px;
+    padding: 16px;
+  }
+
+  .profileSection {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .controlsRow {
+    justify-content: center;
+    padding: 0 16px;
+  }
+  
+  .searchContainer, .searchBar {
+    width: 100%;
+  }
+
+  .footer {
+    flex-direction: column !important;
+    gap: 12px;
+    text-align: center;
+    padding: 20px 16px !important;
+  }
+}

@@ -1,0 +1,433 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Goldman:wght@400;700&family=Space+Mono:wght@700&display=swap");
+
+.Tela_4_12_1175 {
+  background: var(--bg-popeye);
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  transition: background 0.3s ease;
+}
+
+.Barra_12_1253 {
+  background: var(--bg-popeye);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 900px;
+  padding: 16px 24px;
+  display: flex;
+  position: relative;
+  box-sizing: border-box;
+  transition: background 0.3s ease;
+}
+
+.Logo_1_2491 {
+  align-items: center;
+  display: flex;
+}
+
+.CampusBazaar_1_2492 {
+  color: var(--cor-texto-dark);
+  letter-spacing: 1.92px;
+  font-family: 'Goldman', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 100%;
+  transition: opacity 0.2s ease, transform 0.2s ease, color 0.3s ease;
+}
+
+.CampusBazaar_1_2492:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.Icons_1_2493 {
+  align-items: center;
+  gap: 16px;
+  display: flex;
+}
+
+.IconButtonInvisible {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.IconButtonInvisible:hover {
+  transform: translateY(-2px);
+  opacity: 0.8;
+}
+
+.Divider_Linha {
+  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  overflow: hidden;
+}
+
+.Container_12_1277 {
+  width: 100%;
+  max-width: 900px;
+  padding: 32px 24px;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.MainContent_12_1185 {
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+}
+
+.AppSettings_12_1186 {
+  background: var(--bg-popeye);
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+  transition: background 0.3s ease;
+}
+
+.ConfiguraçõesDoSite_12_1187 {
+  color: var(--cor-texto-dark);
+  letter-spacing: -0.28px;
+  font-family: 'Goldman', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  transition: color 0.3s ease;
+}
+
+.EditableUsername_12_1188 {
+  background: var(--bg-popeye);
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 16px 0;
+  display: flex;
+  transition: background 0.3s ease;
+}
+
+.Profile_12_1189 {
+  width: 84px;
+  height: 84px;
+  position: relative;
+}
+
+.AvatarPlaceholder {
+  box-sizing: border-box;
+  background: var(--cor-primaria);
+  border: 2px solid var(--cor-texto-dark);
+  border-radius: 999px;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.AvatarFallbackText {
+  color: var(--cor-texto-light);
+  font-family: 'Goldman', sans-serif;
+  font-size: 32px;
+  transition: color 0.3s ease;
+}
+
+.IconButtonOutlinedStandard_12_1191 {
+  background: var(--cor-primaria);
+  border: 1.5px solid var(--bg-popeye);
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.3s ease;
+}
+
+.IconButtonOutlinedStandard_12_1191:hover {
+  transform: scale(1.1);
+  background: var(--cor-texto-dark);
+}
+
+.InputLabeled_12_1195, .InputLabeled_12_1228, .InputLabeled_12_1237, .InputLabeled_Telefone {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  display: flex;
+}
+
+.NomeDeUsuário_12_1196, .Nome_12_1229, .Email_12_1238, .TelefoneLabel {
+  color: var(--cor-texto-dark);
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.InputStandard_12_1197, .InputStandard_12_1230, .InputStandard_12_1239, .InputStandard_Telefone {
+  box-sizing: border-box;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-input);
+  border-radius: 22px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  display: flex;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.InputStandard_12_1197:focus-within, 
+.InputStandard_12_1230:focus-within, 
+.InputStandard_Telefone:focus-within {
+  border-color: var(--cor-texto-dark);
+  box-shadow: 0 0 0 3px rgba(109, 45, 217, 0.15);
+}
+
+.FormInputStyle {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  color: var(--cor-texto-dark);
+  font-family: "Baloo 2", sans-serif;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.InputStandard_12_1239.InputDisabled {
+  background: var(--bg-input-disabled);
+  border-color: rgba(68, 10, 143, 0.4);
+}
+
+.InputDisabled input {
+  cursor: not-allowed;
+  color: var(--cor-texto-dark);
+  opacity: 0.6;
+}
+
+.ToggleableSettingsList_12_1199 {
+  border-top: 1.5px solid var(--border-input);
+  flex-direction: column;
+  width: 100%;
+  padding: 24px 0;
+  display: flex;
+}
+
+.Preferências_12_1200, .InformaçõesPessoais_12_1226 {
+  color: var(--cor-texto-dark);
+  font-family: 'Goldman', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+.ToggleableSetting_12_1201, .ToggleableSetting_12_1207 {
+  background: transparent;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 0;
+  display: flex;
+  cursor: pointer;
+}
+
+.Container_12_1202, .Container_12_1208 {
+  flex-direction: column;
+  display: flex;
+  gap: 2px;
+}
+
+.Notificações_12_1203, .TemaEscuro_12_1209 {
+  color: var(--cor-texto-dark);
+  font-family: "Baloo 2", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.AtivarNotificaçõesPorEmail_12_1204, .AtivarTemaEscuroNoSite_12_1210 {
+  color: var(--cor-texto-dark);
+  font-family: "Baloo 2", sans-serif;
+  font-size: 14px;
+  opacity: 0.8;
+  transition: color 0.3s ease;
+}
+
+.ToggleTrack {
+  width: 56px;
+  height: 28px;
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border-input);
+  border-radius: 20px;
+  position: relative;
+  transition: background-color 0.2s ease, border-color 0.3s ease;
+}
+
+.ToggleTrackActive {
+  background-color: var(--cor-primaria);
+}
+
+.ToggleHandle {
+  width: 20px;
+  height: 20px;
+  background-color: var(--cor-primaria);
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.ToggleHandleActive {
+  transform: translateX(28px);
+  background-color: var(--bg-popeye);
+}
+
+.SettingsInputList_12_1225 {
+  border-top: 1.5px solid var(--border-input);
+  flex-direction: column;
+  width: 100%;
+  padding: 24px 0;
+  display: flex;
+  gap: 16px;
+}
+
+.FormRow_12_1227, .FormRow_Telefone, .FormRow_12_1236 {
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  display: flex;
+}
+
+.SettingsInputList_12_1246 {
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 0;
+  display: flex;
+}
+
+.ButtonOutlinedStandard_12_1247, .ButtonOutlinedStandard_12_1249 {
+  box-sizing: border-box;
+  border: 2px solid var(--cor-primaria); 
+  border-radius: 22px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  display: flex;
+  cursor: pointer;
+  background: transparent;
+  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.3s ease;
+}
+
+.ButtonOutlinedStandard_12_1247 {
+  background: var(--cor-primaria);
+}
+
+.ButtonOutlinedStandard_12_1247:hover {
+  opacity: 0.95;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(109, 45, 217, 0.2);
+}
+
+.ButtonOutlinedStandard_12_1247:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(109, 45, 217, 0.1);
+}
+
+.ButtonOutlinedStandard_12_1249:hover {
+  background: rgba(167, 139, 250, 0.15);
+  transform: scale(1.02);
+}
+
+.ButtonOutlinedStandard_12_1249:active {
+  transform: scale(0.98);
+}
+
+.SalvarAlterações_12_1248 {
+  color: var(--cor-texto-light);
+  font-family: "Baloo 2", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.Cancelar_12_1250 {
+  color: var(--cor-primaria);
+  font-family: "Baloo 2", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.BasicFooter_12_1251 {
+  width: 100%;
+  height: 48px;
+}
+
+.LogoutSection_Custom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.ButtonLogout_Custom {
+  box-sizing: border-box;
+  background: transparent;
+  border: 2px solid #ef4444;
+  border-radius: 22px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 24px;
+  display: flex;
+  max-width: 220px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ButtonLogout_Custom span {
+  color: #ef4444;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.ButtonLogout_Custom:hover {
+  background: rgba(239, 68, 68, 0.1);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+.ButtonLogout_Custom:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.05);
+}
+
+.ButtonLogout_Custom:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
