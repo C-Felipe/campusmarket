@@ -68,7 +68,7 @@ O CampusMarket surge como uma solução para centralizar essas interações em u
 ## Estrutura do Projeto
 
 ```text
-campusmarket-ufersa/
+campusmarket
 │
 ├── README.md
 ├── CampusMarket.API
@@ -86,26 +86,90 @@ campusmarket-ufersa/
 
 ### Pré-requisitos
 
-* .NET SDK instalado
-* Git instalado
+* .NET 8 SDK
+* Node.js (versão 20 ou superior)
+* npm
+* Git
 
-### Clonando o projeto
+### Clonando o Projeto
 
 ```bash
 git clone <URL_DO_REPOSITORIO>
 cd campusmarket
 ```
 
-### Executando a aplicação
+### Configurando o Banco de Dados
+
+Acesse a pasta da API:
+
+```bash
+cd CampusMarket.API
+```
+
+Execute as migrations para criar o banco SQLite:
+
+```bash
+dotnet ef database update
+```
+
+### Executando o Backend
+
+Na pasta `CampusMarket.API`:
 
 ```bash
 dotnet restore
 dotnet run
 ```
 
-Após a execução, a aplicação estará disponível no endereço informado pelo ASP.NET Core.
+Após executar o backend, a API estará disponível no endereço exibido pelo ASP.NET Core no terminal.
 
----
+Exemplo:
+
+http://localhost:5112
+
+### Executando o Frontend
+
+Abra um novo terminal e acesse a pasta do frontend:
+
+```bash
+cd Front-end
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute a aplicação:
+
+```bash
+npm run dev
+```
+
+Após executar o comando `npm run dev`, o Vite exibirá no terminal o endereço de acesso da aplicação.
+
+Exemplo:
+
+http://localhost:5173
+
+### Acessando o Sistema
+
+Com o backend e o frontend em execução, acesse no navegador o endereço exibido pelo Vite no terminal.
+
+Exemplo:
+
+```text
+http://localhost:5173
+```
+Caso a porta esteja ocupada, o Vite poderá utilizar outra porta automaticamente.
+
+### Observações
+
+* O projeto utiliza SQLite como banco de dados durante o desenvolvimento.
+* O banco é criado automaticamente após a execução das migrations.
+* É necessário que o backend esteja em execução para que o frontend consiga carregar os dados.
+
 
 ## Link do Protótipo
 
