@@ -32,9 +32,7 @@ O CampusMarket surge como uma solução para centralizar essas interações em u
 * Pesquisa e filtragem de anúncios;
 * Visualização detalhada dos produtos anunciados;
 * Comunicação entre compradores e vendedores;
-* Sistema de favoritos;
 * Gerenciamento de anúncios pelo usuário;
-* Avaliação de vendedores;
 * Organização centralizada das ofertas da comunidade acadêmica.
 
 ---
